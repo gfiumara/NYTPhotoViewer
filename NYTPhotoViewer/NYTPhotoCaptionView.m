@@ -116,6 +116,7 @@ static const CGFloat NYTPhotoCaptionViewVerticalMargin = 7.0;
     self.textView.editable = NO;
     self.textView.dataDetectorTypes = UIDataDetectorTypeNone;
     self.textView.backgroundColor = [UIColor clearColor];
+    self.textView.textColor = [UIColor whiteColor];
     self.textView.textContainerInset = UIEdgeInsetsMake(NYTPhotoCaptionViewVerticalMargin, NYTPhotoCaptionViewHorizontalMargin, NYTPhotoCaptionViewVerticalMargin, NYTPhotoCaptionViewHorizontalMargin);
 
     [self addSubview:self.textView];
@@ -157,7 +158,7 @@ static const CGFloat NYTPhotoCaptionViewVerticalMargin = 7.0;
         
         [attributedLabelText appendAttributedString:self.attributedCredit];
     }
-    
+
     self.textView.attributedText = attributedLabelText;
 }
 
