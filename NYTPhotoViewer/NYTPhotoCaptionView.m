@@ -115,6 +115,7 @@ static const CGFloat NYTPhotoCaptionViewVerticalMargin = 7.0;
     self.textView.translatesAutoresizingMaskIntoConstraints = NO;
     self.textView.editable = NO;
     self.textView.dataDetectorTypes = UIDataDetectorTypeNone;
+    self.textView.textColor = nil;
     self.textView.backgroundColor = [UIColor clearColor];
     self.textView.textContainerInset = UIEdgeInsetsMake(NYTPhotoCaptionViewVerticalMargin, NYTPhotoCaptionViewHorizontalMargin, NYTPhotoCaptionViewVerticalMargin, NYTPhotoCaptionViewHorizontalMargin);
 
