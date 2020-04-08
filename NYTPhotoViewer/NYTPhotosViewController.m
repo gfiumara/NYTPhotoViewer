@@ -19,7 +19,8 @@
 #import "NSBundle+NYTPhotoViewer.h"
 
 #ifdef ANIMATED_GIF_SUPPORT
-#import <FLAnimatedImage/FLAnimatedImage.h>
+#import <PINRemoteImage/PINRemoteImage.h>
+#import <PINRemoteImage/PINAnimatedImageView.h>
 #endif
 
 NSString * const NYTPhotosViewControllerDidNavigateToPhotoNotification = @"NYTPhotosViewControllerDidNavigateToPhotoNotification";
@@ -37,7 +38,6 @@ static const UIEdgeInsets NYTPhotosViewControllerCloseButtonImageInsets = {3, 0,
 
 @property (nonatomic) UIPageViewController *pageViewController;
 @property (nonatomic) NYTPhotoTransitionController *transitionController;
-@property (nonatomic) UIPopoverController *activityPopoverController;
 
 @property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic) UITapGestureRecognizer *singleTapGestureRecognizer;
@@ -193,7 +193,7 @@ static const UIEdgeInsets NYTPhotosViewControllerCloseButtonImageInsets = {3, 0,
     _singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSingleTapWithGestureRecognizer:)];
 
     _transitionController = [[NYTPhotoTransitionController alloc] init];
-    self.modalPresentationStyle = UIModalPresentationCustom;
+    self.modalPresentationStyle = UIModalPresentationFullScreen;
     self.transitioningDelegate = _transitionController;
     self.modalPresentationCapturesStatusBarAppearance = YES;
 
