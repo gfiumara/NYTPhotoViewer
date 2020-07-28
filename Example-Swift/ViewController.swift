@@ -33,7 +33,7 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
 
         let buttonImage = UIImage(named: ReferencePhotoName)
-        imageButton?.setBackgroundImage(buttonImage, for: UIControlState())
+        imageButton?.setBackgroundImage(buttonImage, for: UIControl.State())
     }
 }
 
@@ -47,7 +47,7 @@ extension ViewController: NYTPhotosViewControllerDelegate {
         }
         
         let shareActivityViewController = UIActivityViewController(activityItems: [photoImage], applicationActivities: nil)
-        shareActivityViewController.completionWithItemsHandler = {(activityType: UIActivityType?, completed: Bool, items: [Any]?, error: Error?) in
+        shareActivityViewController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, items: [Any]?, error: Error?) in
             if completed {
                 photosViewController.delegate?.photosViewController!(photosViewController, actionCompletedWithActivityType: activityType?.rawValue)
             }
@@ -67,5 +67,16 @@ extension ViewController: NYTPhotosViewControllerDelegate {
 
     func photosViewControllerDidDismiss(_ photosViewController: NYTPhotosViewController) {
         photoViewerCoordinator = nil
+    }
+
+    func photosViewController(_ photosViewController: NYTPhotosViewController, interstitialViewAt index: UInt) -> UIView {
+        let redView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: photosViewController.view.frame.width, height: 200)))
+        redView.backgroundColor = .red
+        redView.autoresizingMask = [.flexibleWidth]
+        return redView
+    }
+
+    func photosViewController(_ photosViewController: NYTPhotosViewController, didNavigateToInterstialView view: UIView, at index: UInt) {
+        view.backgroundColor = .blue
     }
 }

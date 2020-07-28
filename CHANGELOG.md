@@ -2,6 +2,41 @@
 
 Changes for users of the library currently on `develop`:
 
+## [4.0.1](https://github.com/nytimes/NYTPhotoViewer/releases/tag/4.0.1)
+
+Changes for users of the library in 4.0.1:
+
+- Removed `FLAnimatedImage` from .gitmodules.
+- Change `NYTPhotosViewController` to use fullscreen presentation by default, so it causes the presenting view to disappear behind it, i.e. to get `-viewWillDisappear:` and `-viewDidDisappear` called on it.
+- Fix unbalanced calls to begin/end appearance transitions.
+- Modified comment parameter in `NYTPhotosViewController` and `NYTPhotoViewerSinglePhotoDataSource` to match parameter in signature. Removes compilation warning.
+
+## [4.0.0](https://github.com/nytimes/NYTPhotoViewer/releases/tag/4.0.0)
+
+Changes for users of the library in 4.0.0:
+
+- Update deployment target to 9.0 from 8.0
+- Remove property `UIPopoverController *activityPopoverController` from `NYTPhotosViewController`
+- Replace use of `FLAnimatedImage` with `PINRemoteImage` (https://github.com/pinterest/PINRemoteImage) because `FLAnimatedImage` is no longer maintained and contains deprecated code.
+
+## [3.0.1](https://github.com/nytimes/NYTPhotoViewer/releases/tag/3.0.1)
+
+Changes for users of the library in 3.0.1:
+
+- Fixed issue with beginAppearanceTransition being called on VCs with no parent VC
+
+## [3.0.0](https://github.com/nytimes/NYTPhotoViewer/releases/tag/3.0.0)
+
+Changes for users of the library in 3.0.0:
+
+- Unit test improvements
+- Interstitial view support + Swift sample
+- NSObject conformance for example app
+
+## [2.0.0](https://github.com/NYTimes/NYTPhotoViewer/releases/tag/2.0.0)
+
+Changes for users of the library in 2.0.0:
+
 - Expose a data-source-oriented API for PhotosViewController ([#226](https://github.com/NYTimes/NYTPhotoViewer/pull/226))
     - A data source no longer has to handle out-of-bounds indexes ([#227](https://github.com/NYTimes/NYTPhotoViewer/pull/227))
     - The data source is not retained ([#227](https://github.com/NYTimes/NYTPhotoViewer/pull/227))

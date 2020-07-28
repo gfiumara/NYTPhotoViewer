@@ -12,10 +12,10 @@ import NYTPhotoViewer
 /// A box allowing NYTPhotoViewer to consume Swift value types from our codebase.
 final class NYTPhotoBox: NSObject, NYTPhoto {
 
-    let value: Photo
+    let value: PhotoItem
 
-    init(_ photo: Photo) {
-        value = photo
+    init(_ photoItem: PhotoItem) {
+        value = photoItem
     }
 
     // MARK: NYTPhoto
@@ -24,17 +24,25 @@ final class NYTPhotoBox: NSObject, NYTPhoto {
     var imageData: Data?
     var placeholderImage: UIImage?
 
+    var isPhoto: Bool {
+        return value.itemType == .image
+    }
+
+    var isView: Bool {
+        return value.itemType == .view
+    }
+
     var attributedCaptionTitle: NSAttributedString?
 
     var attributedCaptionSummary: NSAttributedString? {
-        let attributes = [NSForegroundColorAttributeName: UIColor.white,
-                          NSFontAttributeName: UIFont.preferredFont(forTextStyle: .body)]
+        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                          NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
         return NSAttributedString(string: value.summary, attributes: attributes)
     }
 
     var attributedCaptionCredit: NSAttributedString? {
-        let attributes = [NSForegroundColorAttributeName: UIColor.gray,
-                          NSFontAttributeName: UIFont.preferredFont(forTextStyle: .footnote)]
+        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.gray,
+                          NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .footnote)]
         return NSAttributedString(string: value.credit, attributes: attributes)
     }
 }

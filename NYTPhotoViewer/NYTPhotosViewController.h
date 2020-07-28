@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 extern NSString * const NYTPhotosViewControllerDidNavigateToPhotoNotification;
 
+extern NSString * const NYTPhotosViewControllerDidNavigateToInterstitialViewNotification;
+
 /**
  *  Notification name issued when this `NYTPhotosViewController` is about to be dismissed.
  *
@@ -144,7 +146,7 @@ extern NSString * const NYTPhotosViewControllerDidDismissNotification;
  *
  *  This method has no effect if the given index is out of bounds in the data source.
  *
- *  @param photo The index of the photo which changed in the data source.
+ *  @param photoIndex The index of the photo which changed in the data source.
  */
 - (void)updatePhotoAtIndex:(NSInteger)photoIndex;
 
@@ -183,6 +185,15 @@ extern NSString * const NYTPhotosViewControllerDidDismissNotification;
  *  @param photoIndex           The index of the photo that was just displayed.
  */
 - (void)photosViewController:(NYTPhotosViewController *)photosViewController didNavigateToPhoto:(id <NYTPhoto>)photo atIndex:(NSUInteger)photoIndex;
+
+/**
+ *  Called when a new interstitial view is displayed through a swipe gesture.
+ *
+ *  @param photosViewController The `NYTPhotosViewController` instance that sent the delegate message.
+ *  @param view                 The view that was just displayed.
+ *  @param index                The index of the view that was just displayed.
+ */
+- (void)photosViewController:(NYTPhotosViewController *)photosViewController didNavigateToInterstialView:(UIView *)view atIndex:(NSUInteger)index;
 
 /**
  *  Called immediately before the `NYTPhotosViewController` is about to start a user-initiated dismissal.
@@ -297,6 +308,16 @@ extern NSString * const NYTPhotosViewControllerDidDismissNotification;
  *  @param activityType         The activity type that was successfully shared.
  */
 - (void)photosViewController:(NYTPhotosViewController *)photosViewController actionCompletedWithActivityType:(NSString * _Nullable)activityType;
+
+/**
+ *  called when an `NYTInterstitialViewController` is created but before it is displayed. Returns the view to display as an interstitial view.
+ *
+ *  @param photosViewController The `NYTPhotosViewController` instance that sent the delegate message.
+ *  @param index                The index in the page view controller where the view will be displayed.
+ *
+ *  @return A `UIView`.
+ */
+- (UIView *)photosViewController:(NYTPhotosViewController *)photosViewController interstitialViewAtIndex:(NSUInteger)index;
 
 @end
 
